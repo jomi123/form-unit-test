@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card mt-5 border-1 shadow-lg">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Login</h2>
+                    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" formControlName="username"
+                                name="username" placeholder="Enter username">
+                            <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
+                                class="text-danger">
+                                <div *ngIf="loginForm.get('username')?.errors?.['required']">Username is required.
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter password"
+                                formControlName="password" name="password">
+                            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+                                class="text-danger">
+                                <div *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.
+                                </div>
+                                <div *ngIf="loginForm.get('password')?.errors?.['minlength']">Minimum length should
+                                    be>=4.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <p style="font-size: smaller;">Do not have an Account?</p>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <a class="text-primary" style="cursor: pointer;font-size: smaller; "
+                                    (click)="goToSignup()">Sign Up</a>
+                            </div>
+
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary " (click)="goToHome()"
+                                [disabled]="loginForm.invalid">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
